@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8">
+  <title>Пример страницы</title>
+
+  <style>
+  img {
+	transition: filter .4s;
+	-filter: contrast(0);
+  }
+  img[data-is-open] {
+	-filter: contrast(1);
+  }
+  </style>
+ </head>
+ <body>
+  <select id="size">
+	<option value="2">2x2</option>
+	<option value="4">4x4</option>
+	<option value="6">6x6</option>
+	<option value="8">8x8</option>
+  </select>
+  <input id="user" placeholder="Name" type="text">
+  <button type="button" onclick="startGame()">Start Game</button>
+  <div id="gameField"></div>
+<script src="script.js"></script>
+ </body>
+</html>
