@@ -5,16 +5,132 @@
   <title>Пример страницы</title>
 
   <style>
+  *{
+	  padding:0;
+	  margin: 0;
+	  box-sizing: border-box;
+  }
+  table {
+	  margin:auto;
+	  border-collapse: collapse;
+  }
+  td {
+	  padding:3px;
+  }
   img {
 	transition: filter .4s;
-	-filter: contrast(0);
+	display:block;
   }
   img[data-is-open] {
 	-filter: contrast(1);
   }
+  fieldset {
+	  box-shadow: 0 0 5px rgb(0, 0, 0);
+	  padding: 10px;
+	  border-radius: 10px;
+	  max-width:600px;
+	  margin:50px auto;
+	  transition: all .4s;
+  }
+  input, select {
+	display: block;
+    width: 100%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+	margin-bottom:10px;
+  }
+  
+  button {
+	  display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+  }
+  ul {
+	  list-style: none;
+	  display:flex;
+	  flex-direction: column;
+	  margin:10px 0 0;
+  }
+  li {
+	  display: flex;
+	  justify-content: space-between;
+	  margin-bottom:5px;
+	  
+  }
+  li span:first-child {
+	  flex: 0 0 20px;
+  }
+  li span:nth-child(2) {
+	  flex: 1 1 50%;
+  }
+  li span:nth-child(3) {
+	  flex: 1 1 50%;
+  }
+  section {
+	  display:block;
+	  overflow: hidden;
+  }
+  
+  /* весь контейнер поддерживает перспективу */
+.flip-container {
+	perspective: 1000;
+}
+ /* переверните сторону при проведении мышью .flip-container:hover .flipper,*/
+ 
+ .flip-container.open .flipper {
+	transform: rotateY(180deg);
+ }
+ 
+.flip-container, .front, .back, .flipper {
+ width: 100px;
+ height: 100px;
+}
+ 
+/* здесь находится скорость перевертывания */
+.flipper {
+ transition: 0.6s;
+ transform-style: preserve-3d;
+ position: relative;
+}
+ 
+/* скройте обратную сторону во время переворота */
+.front, .back {
+ backface-visibility: hidden;
+ 
+ position: absolute;
+ top: 0;
+ left: 0;
+}
+ 
+/* лицевая сторона размещена над обратной */
+.front {
+ z-index: 2;
+ background-color: red;
+}
+ 
+/* обратная, изначально скрытая сторона */
+.back {
+ transform: rotateY(180deg)
+}
   </style>
  </head>
  <body>
+ <section id="startMenu">
+ <fieldset>
   <select id="size">
 	<option value="2">2x2</option>
 	<option value="4">4x4</option>
@@ -23,6 +139,10 @@
   </select>
   <input id="user" placeholder="Name" type="text">
   <button type="button" onclick="startGame()">Start Game</button>
+  <button type="button" onclick="showRecords()">Show Records</button>
+  <div id="recordsField"></div>
+  </fieldset>
+  </section>
   <div id="gameField"></div>
 <script src="script.js"></script>
  </body>
